@@ -1,0 +1,7 @@
+[core]
+[core]
+	filemode = false
+	autocrlf = true
+[user]
+	name = Ibragim Youldachev
+	email = ibragim.youldachev@gmail.com
