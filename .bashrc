@@ -55,3 +55,4 @@ alias la='ls -A'
 alias lla='ls -Al'
 alias l='ls -CF'
 
+alias s='git status'
