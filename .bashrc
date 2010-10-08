@@ -23,6 +23,11 @@ parse_git_branch() {
 	fi	
 }
 
+#function parse_git_branch {
+#   ref=$(git symbolic-ref HEAD 2> /dev/null) || return
+#       echo "("${ref#refs/heads/}")"
+#}
+
 bash_prompt() {
 	case "$TERM" in
 	   xterm-color)
@@ -56,3 +61,7 @@ alias lla='ls -Al'
 alias l='ls -CF'
 
 alias s='git status'
+alias d='git diff'
+alias b='git branch'
+
+alias gitstatus='find . -type d -name ".git" |while read i; do print $i; done'
