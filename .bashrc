@@ -14,19 +14,19 @@ shopt -s histappend
 # check windows size after each command and change LINES and COLUMNS if ncessary
 shopt -s checkwinsize
 
-parse_git_branch() {
-	local gitbranch=$(git name-rev HEAD 2> /dev/null | tr -d HEAD\ )
-	if [ -z $gitbranch ]; then
-		echo ""
-	else
-		echo " (git:$gitbranch)"
-	fi	
-}
-
-#function parse_git_branch {
-#   ref=$(git symbolic-ref HEAD 2> /dev/null) || return
-#       echo "("${ref#refs/heads/}")"
+#parse_git_branch() {
+#	local gitbranch=$(git name-rev HEAD 2> /dev/null | tr -d HEAD\ )
+#	if [ -z $gitbranch ]; then
+#		echo ""
+#	else
+#		echo " (git:$gitbranch)"
+#	fi	
 #}
+
+function parse_git_branch {
+   ref=$(git symbolic-ref HEAD 2> /dev/null) || return
+       echo " (git:"${ref#refs/heads/}")"
+}
 
 bash_prompt() {
 	case "$TERM" in
@@ -45,9 +45,9 @@ bash_prompt() {
 	local CL_BLUE='\e[0;35m'	# blue
 	local CL_YELLOW='\e[0;33m'	# yellow
 
-	if [ "$color_prompt" = yes ]; then
+#	if [ "$color_prompt" = yes ]; then
 	   PS1=$CL_BLUE'\u@\h:'$CL_GREEN'\W'$CL_RESET$CL_YELLOW'$(parse_git_branch)'$CL_RESET' \$ '
-	fi
+#	fi
 }
 
 bash_prompt
