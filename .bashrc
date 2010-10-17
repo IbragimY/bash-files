@@ -14,19 +14,11 @@ shopt -s histappend
 # check windows size after each command and change LINES and COLUMNS if ncessary
 shopt -s checkwinsize
 
-parse_git_branch() {
-	local gitbranch=$(git name-rev HEAD 2> /dev/null | tr -d HEAD\ )
-	if [ -z $gitbranch ]; then
-		echo ""
-	else
-		echo " (git:$gitbranch)"
-	fi	
-}
 
-#function parse_git_branch {
-#   ref=$(git symbolic-ref HEAD 2> /dev/null) || return
-#       echo "("${ref#refs/heads/}")"
-#}
+function parse_git_branch {
+   ref=$(git symbolic-ref HEAD 2> /dev/null) || return
+       echo " (git:"${ref#refs/heads/}")"
+}
 
 bash_prompt() {
 	case "$TERM" in
