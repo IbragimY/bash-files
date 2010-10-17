@@ -65,3 +65,5 @@ alias d='git diff'
 alias b='git branch'
 
 alias gitstatus='find . -type d -name ".git" |while read i; do print $i; done'
+alias u='sudo apt-get upgrade'
+alias i='sudo apt-get install'
