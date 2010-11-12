@@ -16,7 +16,7 @@ shopt -s checkwinsize
 
 function parse_git_branch {
    ref=$(git symbolic-ref HEAD 2> /dev/null) || return
-       echo " (git:"${ref#refs/heads/}")"
+       echo "("${ref#refs/heads/}")"
 }
 
 bash_prompt() {
@@ -31,14 +31,14 @@ bash_prompt() {
 	# \e[1;XXm 		-- bold
 	# \e[4;XXm		-- underline
 
-	local CL_RESET='\e[00m' 	# text reset
-	local CL_GREEN='\e[0;32m'	# green
-	local CL_BLUE='\e[0;35m'	# blue
-	local CL_YELLOW='\e[0;33m'	# yellow
+	local CL_RESET='\[\e[0;0m\]' 	# text reset
+	local CL_GREEN='\[\e[0;32m\]'	# green
+	local CL_BLUE='\[\e[0;35m\]'	# blue
+	local CL_YELLOW="\[\e[0;33m\]"	# yellow
 
-#	if [ "$color_prompt" = yes ]; then
-	   PS1=$CL_BLUE'\u@\h:'$CL_GREEN'\W'$CL_RESET$CL_YELLOW'$(parse_git_branch)'$CL_RESET' \$ '
-#	fi
+	if [ "$color_prompt" = yes ]; then
+	   PS1=$CL_BLUE'\u@\h:'$CL_GREEN'\W'$CL_YELLOW'$(parse_git_branch)'$CL_RESET' \$ '
+	fi
 }
 
 bash_prompt
@@ -55,6 +55,5 @@ alias s='git status'
 alias d='git diff'
 alias b='git branch'
 
-alias gitstatus='find . -type d -name ".git" |while read i; do print $i; done'
 alias u='sudo apt-get upgrade'
 alias i='sudo apt-get install'
