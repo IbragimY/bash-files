@@ -36,14 +36,12 @@ bash_prompt() {
 	local CL_BLUE='\[\e[0;35m\]'	# blue
 	local CL_YELLOW="\[\e[0;33m\]"	# yellow
 
-	if [ "$color_prompt" = yes ]; then
-	   PS1=$CL_BLUE'\u@\h:'$CL_GREEN'\W'$CL_YELLOW'$(parse_git_branch)'$CL_RESET' \$ '
-	fi
+	PS1=$CL_BLUE'\u@\h:'$CL_GREEN'\W'$CL_YELLOW'$(parse_git_branch)'$CL_RESET' \$ '
 }
 
 bash_prompt
 
-alias ls='ls -G'
+alias ls='ls --color'
 alias grep='grep --color=auto'
 
 alias ll='ls -l'
